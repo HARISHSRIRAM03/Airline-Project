@@ -35,6 +35,29 @@ class AirplaneTicket(Document):
 				self.source_airport_code = flight_doc.source_airport_code
 			if not self.destination_airport_code:
 				self.destination_airport_code = flight_doc.destination_airport_code
+		self.validate_capacity()
+		self.calculate_total_amount()
+
+	def validate_capacity(self):
+		if not self.flight:
+			return
+		flight_doc = frappe.get_doc("Airplane Flight", self.flight)
+		airplane_doc = frappe.get_doc("Airplane", flight_doc.airplane)
+		capacity = airplane_doc.capacity
+
+		filters = {"flight": self.flight, "docstatus": ["!=", 2]}
+		if self.name:
+			filters["name"] = ["!=", self.name]
+		ticket_count = frappe.db.count("Airplane Ticket", filters)
+
+		if ticket_count >= capacity:
+			frappe.throw(
+				f"Flight {self.flight} is fully booked. "
+				f"Airplane {airplane_doc.name} has only {capacity} seats "
+				f"and {ticket_count} tickets have already been issued."
+			)
+
+	def calculate_total_amount(self):
 		total = self.flight_price
 		for item in self.add_ons:
 			total += item.amount

@@ -9,7 +9,9 @@
  "field_order": [
   "founding_year",
   "customer_care_number",
-  "headquarters"
+  "headquarters",
+  "website",
+  "airline_logo"
  ],
  "fields": [
   {
@@ -31,9 +33,22 @@
    "in_list_view": 1,
    "label": "Headquarters",
    "reqd": 1
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website",
+   "options": "URL"
+  },
+  {
+   "fieldname": "airline_logo",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Airline logo"
   }
  ],
  "grid_page_length": 50,
+ "image_field": "airline_logo",
  "index_web_pages_for_search": 1,
  "links": [
   {
@@ -41,7 +56,7 @@
    "link_fieldname": "airline"
   }
  ],
- "modified": "2026-06-18 15:20:30.208641",
+ "modified": "2026-06-22 15:16:17.516674",
  "modified_by": "Administrator",
  "module": "Airline",
  "name": "Airline",

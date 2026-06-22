@@ -6,13 +6,14 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "airport",
-  "shop_number",
-  "shop_name",
-  "status",
-  "area_sq_ft",
-  "column_break_6",
-  "tenant",
+   "airport",
+   "shop_number",
+   "shop_name",
+   "shop_type",
+   "status",
+   "area_sq_ft",
+   "column_break_6",
+   "tenant",
   "rent_amount",
   "contract_expiry_date"
  ],
@@ -41,8 +42,15 @@
   },
   {
    "default": "Available",
-   "fieldname": "status",
-   "fieldtype": "Select",
+   "fieldname": "shop_type",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Shop Type",
+    "options": "Shop Type"
+   },
+   {
+    "fieldname": "status",
+    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
    "options": "Available\nOccupied\nUnder Maintenance",
@@ -80,12 +88,16 @@
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [
-  {
-   "link_doctype": "Rent Payment",
-   "link_fieldname": "shop"
-  }
- ],
+  "links": [
+   {
+    "link_doctype": "Rent Payment",
+    "link_fieldname": "shop"
+   },
+   {
+    "link_doctype": "Shop Lead",
+    "link_fieldname": "shop"
+   }
+  ],
  "modified": "2026-06-22 17:11:55.806728",
  "modified_by": "Administrator",
  "module": "Airport Shop Management",

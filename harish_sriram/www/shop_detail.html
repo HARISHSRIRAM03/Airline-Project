@@ -1,0 +1,50 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<style>
+{{ css }}
+.card:hover { transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.12); }
+</style>
+
+<div class="container" style="max-width:900px;margin:0 auto;padding:2em 1em;">
+    <a href="/shops" style="color:#0074d9;margin-bottom:1em;display:inline-block;">&larr; Back to Shops</a>
+
+    {% if submitted %}
+    <div style="padding:.8em 1em;background:#2ecc40;color:#fff;border-radius:.3em;margin-bottom:1em;">
+        Thank you! Your interest has been submitted. We'll get back to you soon.
+    </div>
+    {% endif %}
+
+    <div class="card" style="border-radius:.5em;overflow:hidden;border:1px solid #ddd;">
+        <div style="padding:1.5em 2em;background:#0074d9;color:#fff;">
+            <h1 style="margin:0;font-size:1.8rem;">{{ shop.shop_name }}</h1>
+            <p style="margin:.3em 0 0;opacity:.85;">{{ shop.airport }}</p>
+        </div>
+        <div style="padding:2em;">
+            <div class="flex two-600">
+                <div>
+                    <p><strong>Shop Type:</strong> {{ shop.shop_type or '—' }}</p>
+                    <p><strong>Area:</strong> {{ shop.area_sq_ft or '—' }} sq ft</p>
+                    <p><strong>Rent Amount:</strong> ${{ shop.rent_amount or '—' }}</p>
+                </div>
+                <div>
+                    <p><strong>Status:</strong>
+                        <span class="label {% if shop.status == 'Available' %}success{% elif shop.status == 'Occupied' %}warning{% else %}error{% endif %}">
+                            {{ shop.status }}
+                        </span>
+                    </p>
+                    <p><strong>Shop Number:</strong> {{ shop.shop_number or '—' }}</p>
+                    <p><strong>Contract Expiry:</strong> {{ shop.contract_expiry_date or '—' }}</p>
+                </div>
+            </div>
+
+            {% if shop.status == "Available" or shop.status == "Under Maintenance" %}
+            <hr style="margin:1.5em 0;">
+            <h3>Interested in this shop?</h3>
+            <p>Submit your interest and we'll get back to you.</p>
+            <a href="/shop_lead?shop={{ shop.name }}" class="button success">Submit Interest</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

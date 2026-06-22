@@ -1,0 +1,55 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<style>
+{{ css }}
+</style>
+
+<div class="container" style="max-width:700px;margin:0 auto;padding:2em 1em;">
+    <a href="/shop_detail?shop={{ shop.name }}" style="color:#0074d9;margin-bottom:1em;display:inline-block;">&larr; Back to Shop</a>
+
+    <div class="card" style="border-radius:.5em;border:1px solid #ddd;">
+        <div style="padding:1.5em 2em;background:#0074d9;color:#fff;">
+            <h1 style="margin:0;font-size:1.6rem;">Submit Interest</h1>
+        </div>
+        <div style="padding:2em;">
+            {% if shop %}
+            <p style="margin-bottom:1.5em;padding:.8em 1em;background:#f5f5f5;border-radius:.3em;">
+                <strong>Shop:</strong> {{ shop.shop_name }} ({{ shop.airport }})
+            </p>
+            {% endif %}
+
+            {% if error %}
+            <div style="padding:.8em 1em;background:#ff4136;color:#fff;border-radius:.3em;margin-bottom:1em;">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="/shop_lead">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <input type="hidden" name="shop" value="{{ shop.name if shop else '' }}">
+                <div class="flex two-600">
+                    <div>
+                        <label>Name <span style="color:#ff4136;">*</span></label>
+                        <input type="text" name="lead_name" required placeholder="Your full name">
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="your@email.com">
+                    </div>
+                </div>
+                <div class="flex two-600">
+                    <div>
+                        <label>Phone</label>
+                        <input type="text" name="phone" placeholder="Phone number">
+                    </div>
+                    <div></div>
+                </div>
+                <div>
+                    <label>Message</label>
+                    <textarea name="message" rows="4" placeholder="Any questions or requirements..."></textarea>
+                </div>
+                <button type="submit" class="button success" style="margin-top:1em;">Submit Interest</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

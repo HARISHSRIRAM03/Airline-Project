@@ -53,6 +53,16 @@ app_license = "mit"
 # include app icons in desk
 # app_include_icons = "harish_sriram/public/icons.svg"
 
+# Website Menus
+# ----------
+
+website_menu_items = [
+    {
+        "title": "Shops",
+        "route": "/shops",
+    },
+]
+
 # Home Pages
 # ----------
 
@@ -86,7 +96,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "harish_sriram.install.before_install"
-# after_install = "harish_sriram.install.after_install"
+after_install = "harish_sriram.airport_shop_management.install.after_install.create_default_shop_types"
 
 # Uninstallation
 # ------------

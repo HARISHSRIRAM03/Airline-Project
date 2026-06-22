@@ -1,0 +1,38 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<style>
+{{ css }}
+</style>
+
+<div class="container" style="max-width:1100px;margin:0 auto;padding:2em 1em;">
+    <h1 style="font-size:2.5rem;font-weight:800;color:#111;margin-bottom:.3em;">Available Shops</h1>
+    <p style="font-size:1.15rem;color:#555;margin-bottom:2em;">Browse our airport shops available for rent</p>
+
+    <div class="flex four-800" style="margin-top:1em;">
+        {% for shop in shops %}
+        <div class="card" style="border-radius:.5em;overflow:hidden;transition:all .3s;border:1px solid #ddd;">
+            <div style="padding:1.2em 1.2em .8em;background:#0074d9;color:#fff;">
+                <h3 style="margin:0;font-size:1.2rem;">{{ shop.shop_name }}</h3>
+                <small style="opacity:.85;">{{ shop.airport }}</small>
+            </div>
+            <div style="padding:1em 1.2em;">
+                <p style="margin:.3em 0;"><strong>Type:</strong> {{ shop.shop_type or '—' }}</p>
+                <p style="margin:.3em 0;"><strong>Area:</strong> {{ shop.area_sq_ft or '—' }} sq ft</p>
+                <p style="margin:.3em 0;"><strong>Rent:</strong> ${{ shop.rent_amount or '—' }}</p>
+                <p style="margin:.3em 0;"><strong>Status:</strong>
+                    <span class="label {% if shop.status == 'Available' %}success{% elif shop.status == 'Occupied' %}warning{% else %}error{% endif %}">
+                        {{ shop.status }}
+                    </span>
+                </p>
+                <a href="/shop_detail?shop={{ shop.name }}" class="button" style="margin-top:.8em;display:inline-block;">View Details</a>
+            </div>
+        </div>
+        {% else %}
+        <div style="text-align:center;padding:3em;width:100%;">
+            <p style="font-size:1.2rem;color:#888;">No shops available yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

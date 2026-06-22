@@ -6,100 +6,113 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_sq9m",
-  "amended_from",
-  "airplane",
-  "source_airport",
-  "destination_airport",
-  "source_airport_code",
-  "destination_airport_code",
-  "date_of_departure",
-  "time_of_departure",
-  "duration",
-  "status"
- ],
- "fields": [
-  {
-   "fieldname": "section_break_sq9m",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Airplane Flight",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "airplane",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Airplane",
-   "options": "Airplane",
-   "reqd": 1
-  },
-  {
-   "fieldname": "source_airport",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Source Airport",
-   "options": "Source Airport",
-   "reqd": 1
-  },
-  {
-   "fieldname": "destination_airport",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Destination Airport",
-   "options": "Destination Airport",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "source_airport.source_code",
-   "fieldname": "source_airport_code",
-   "fieldtype": "Data",
-   "label": "Source Airport Code",
-   "read_only": 1,
-   "reqd": 1
-  },
-  {
-   "fetch_from": "destination_airport.destination_code",
-   "fieldname": "destination_airport_code",
-   "fieldtype": "Data",
-   "label": "Destination Airport Code",
-   "read_only": 1,
-   "reqd": 1
-  },
-  {
-   "fieldname": "date_of_departure",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Date of Departure",
-   "reqd": 1
-  },
-  {
-   "fieldname": "time_of_departure",
-   "fieldtype": "Time",
-   "in_list_view": 1,
-   "label": "Time of Departure",
-   "reqd": 1
-  },
+   "section_break_sq9m",
+   "amended_from",
+   "airplane",
+   "source_airport",
+   "destination_airport",
+   "source_airport_code",
+   "destination_airport_code",
+   "date_of_departure",
+   "time_of_departure",
+   "duration",
+   "status",
+   "crew_section",
+   "flight_crew"
+  ],
+  "fields": [
    {
-    "fieldname": "duration",
-    "fieldtype": "Duration",
-    "label": "Duration",
+    "fieldname": "section_break_sq9m",
+    "fieldtype": "Section Break"
+   },
+   {
+    "fieldname": "amended_from",
+    "fieldtype": "Link",
+    "label": "Amended From",
+    "no_copy": 1,
+    "options": "Airplane Flight",
+    "print_hide": 1,
+    "read_only": 1,
+    "search_index": 1
+   },
+   {
+    "fieldname": "airplane",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Airplane",
+    "options": "Airplane",
     "reqd": 1
    },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Scheduled\nCompleted\nCancelled"
-  }
- ],
+   {
+    "fieldname": "source_airport",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Source Airport",
+    "options": "Source Airport",
+    "reqd": 1
+   },
+   {
+    "fieldname": "destination_airport",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Destination Airport",
+    "options": "Destination Airport",
+    "reqd": 1
+   },
+   {
+    "fetch_from": "source_airport.source_code",
+    "fieldname": "source_airport_code",
+    "fieldtype": "Data",
+    "label": "Source Airport Code",
+    "read_only": 1,
+    "reqd": 1
+   },
+   {
+    "fetch_from": "destination_airport.destination_code",
+    "fieldname": "destination_airport_code",
+    "fieldtype": "Data",
+    "label": "Destination Airport Code",
+    "read_only": 1,
+    "reqd": 1
+   },
+   {
+    "fieldname": "date_of_departure",
+    "fieldtype": "Date",
+    "in_list_view": 1,
+    "label": "Date of Departure",
+    "reqd": 1
+   },
+   {
+    "fieldname": "time_of_departure",
+    "fieldtype": "Time",
+    "in_list_view": 1,
+    "label": "Time of Departure",
+    "reqd": 1
+   },
+    {
+     "fieldname": "duration",
+     "fieldtype": "Duration",
+     "label": "Duration",
+     "reqd": 1
+    },
+   {
+    "fieldname": "status",
+    "fieldtype": "Select",
+    "label": "Status",
+    "options": "Scheduled\nCompleted\nCancelled"
+   },
+   {
+    "fieldname": "crew_section",
+    "fieldtype": "Section Break",
+    "label": "Crew"
+   },
+   {
+    "fieldname": "flight_crew",
+    "fieldtype": "Table",
+    "label": "Flight Crew",
+    "options": "Flight Crew"
+   }
+  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,

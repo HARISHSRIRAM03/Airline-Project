@@ -6,21 +6,22 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_3wiy",
-  "amended_from",
-   "passenger",
-    "flight",
-    "source_airport_code",
-    "destination_airport_code",
-   "status",
-  "add_ons",
-  "flight_price",
-  "total_amount",
-  "departure_details_section",
-  "departure_date",
-  "departure_time",
-  "duration_of_flight"
- ],
+   "section_break_3wiy",
+   "amended_from",
+    "passenger",
+     "flight",
+     "source_airport_code",
+     "destination_airport_code",
+    "status",
+   "gate_number",
+   "add_ons",
+   "flight_price",
+   "total_amount",
+   "departure_details_section",
+   "departure_date",
+   "departure_time",
+   "duration_of_flight"
+  ],
  "fields": [
   {
    "fieldname": "section_break_3wiy",
@@ -94,12 +95,17 @@
    "options": "Booked\nChecked-In\nBoarded",
    "reqd": 1
   },
-  {
-   "fieldname": "add_ons",
-   "fieldtype": "Table",
-   "label": "Add Ons",
-   "options": "Airplane Ticket Add-on Item"
-  },
+   {
+    "fieldname": "gate_number",
+    "fieldtype": "Data",
+    "label": "Gate Number"
+   },
+   {
+    "fieldname": "add_ons",
+    "fieldtype": "Table",
+    "label": "Add Ons",
+    "options": "Airplane Ticket Add-on Item"
+   },
   {
    "fieldname": "flight_price",
    "fieldtype": "Currency",

@@ -22,6 +22,7 @@ class AirplaneTicket(Document):
 		duration_of_flight: DF.Duration | None
 		flight: DF.Link
 		flight_price: DF.Currency
+		gate_number: DF.Data | None
 		passenger: DF.Link
 		source_airport_code: DF.Data
 		status: DF.Literal["Booked", "Checked-In", "Boarded"]

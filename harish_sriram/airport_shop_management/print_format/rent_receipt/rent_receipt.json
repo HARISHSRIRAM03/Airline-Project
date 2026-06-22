@@ -1,0 +1,18 @@
+{
+ "creation": "2026-06-22 17:00:00.000000",
+ "css": ".print-format {\n\tpadding: 15mm;\n}\n\n.receipt-header {\n\ttext-align: center;\n\tmargin-bottom: 20px;\n}\n\n.receipt-header h2 {\n\tmargin-bottom: 5px;\n}\n\n.receipt-details {\n\twidth: 100%;\n\tmargin-bottom: 20px;\n}\n\n.receipt-details td {\n\tpadding: 5px 10px;\n}\n\n.receipt-details td:first-child {\n\tfont-weight: bold;\n\twidth: 150px;\n}\n\n.receipt-footer {\n\ttext-align: center;\n\tmargin-top: 30px;\n\tfont-size: 12px;\n\tcolor: #666;\n}",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Print Format",
+ "font": "Default",
+ "format_data": "[{\"fieldname\": \"print_heading_template\", \"fieldtype\": \"Custom HTML\", \"options\": \"<div class=\\\"receipt-header\\\"><h2>RENT RECEIPT</h2><p>Airport Shop Management</p></div>\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"shop\", \"print_hide\": 0, \"label\": \"Shop\"}, {\"fieldname\": \"tenant\", \"print_hide\": 0, \"label\": \"Tenant\"}, {\"fieldname\": \"airport\", \"print_hide\": 0, \"label\": \"Airport\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"month\", \"print_hide\": 0, \"label\": \"Month\"}, {\"fieldname\": \"year\", \"print_hide\": 0, \"label\": \"Year\"}, {\"fieldname\": \"amount\", \"print_hide\": 0, \"label\": \"Amount\"}, {\"fieldname\": \"paid_date\", \"print_hide\": 0, \"label\": \"Paid Date\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"remarks\", \"print_hide\": 0, \"label\": \"Remarks\"}]",
+ "html": "",
+ "name": "Rent Receipt",
+ "owner": "Administrator",
+ "print_format_builder": 1,
+ "print_format_type": "Jinja",
+ "doc_type": "Rent Payment",
+ "raw_printing": 0,
+ "show_section_headings": 0,
+ "standard": "Yes"
+}

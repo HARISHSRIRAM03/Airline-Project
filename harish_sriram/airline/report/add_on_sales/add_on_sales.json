@@ -1,0 +1,27 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2026-06-22 15:30:00.000000",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2026-06-22 15:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Airline",
+ "name": "Add On Sales",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\n\t`tabAirplane Ticket Add-on Type`.name AS \"Add-on Type:Link/Airplane Ticket Add-on Type:200\",\n\tCOUNT(`tabAirplane Ticket Add-on Item`.name) AS \"Sold Count:Int:150\"\nFROM `tabAirplane Ticket Add-on Type`\nLEFT JOIN `tabAirplane Ticket Add-on Item`\n\tON `tabAirplane Ticket Add-on Item`.item = `tabAirplane Ticket Add-on Type`.name\nGROUP BY `tabAirplane Ticket Add-on Type`.name\nORDER BY COUNT(`tabAirplane Ticket Add-on Item`.name) DESC",
+ "ref_doctype": "Airplane Ticket Add-on Type",
+ "report_name": "Add On Sales",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}

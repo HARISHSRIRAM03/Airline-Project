@@ -149,23 +149,11 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"harish_sriram.tasks.all"
-# 	],
-# 	"daily": [
-# 		"harish_sriram.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"harish_sriram.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"harish_sriram.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"harish_sriram.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"daily": [
+		"harish_sriram.airport_shop_management.rent_reminder.send_reminders.send_rent_reminders"
+	],
+}
 
 # Testing
 # -------

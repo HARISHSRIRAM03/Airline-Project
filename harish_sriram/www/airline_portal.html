@@ -1,0 +1,358 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<style>
+:root {
+    --primary: #1a237e;
+    --accent: #0d47a1;
+    --gold: #ff8f00;
+    --light-bg: #f5f7fa;
+    --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+body { background: var(--light-bg); }
+.hero-section {
+    background: linear-gradient(135deg, #0d1b3e 0%, #1a237e 50%, #283593 100%);
+    padding: 60px 0 50px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+}
+.hero-section h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+.hero-section p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 600px;
+}
+.stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform .2s;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+.stat-card:hover { transform: translateY(-4px); }
+.stat-card .number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+}
+.stat-card .label {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.stat-card .icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    display: block;
+}
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--gold);
+    display: inline-block;
+}
+.card-custom {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    border: none;
+    overflow: hidden;
+    height: 100%;
+    transition: transform .2s;
+}
+.card-custom:hover { transform: translateY(-3px); }
+.card-custom .card-body { padding: 24px; }
+.card-custom .card-title {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+.badge-airline {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.table-airline {
+    margin-bottom: 0;
+}
+.table-airline th {
+    background: #f0f2f5;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--gold);
+    padding: 12px 16px;
+}
+.table-airline td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+.status-booked { color: #1565c0; font-weight: 600; }
+.status-checkedin { color: #e65100; font-weight: 600; }
+.status-boarded { color: #2e7d32; font-weight: 600; }
+.fleet-img-placeholder {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-right: 10px;
+}
+.footer-section {
+    background: #0d1b3e;
+    color: rgba(255,255,255,0.7);
+    padding: 30px 0;
+    margin-top: 60px;
+    text-align: center;
+}
+</style>
+
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>✈ Airline Portal</h1>
+                <p>Complete overview of your airline fleet, flight schedules, passengers, and airport network</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <span style="font-size:5rem;opacity:0.15;color:#fff;">&#9992;</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-2 col-6 mb-3">
+            <div class="stat-card">
+                <span class="icon">🏢</span>
+                <div class="number">{{ total_airlines }}</div>
+                <div class="label">Airlines</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+            <div class="stat-card">
+                <span class="icon">🛩</span>
+                <div class="number">{{ total_airplanes }}</div>
+                <div class="label">Aircraft</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+            <div class="stat-card">
+                <span class="icon">🎫</span>
+                <div class="number">{{ total_tickets }}</div>
+                <div class="label">Tickets</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+            <div class="stat-card">
+                <span class="icon">📍</span>
+                <div class="number">{{ total_airports }}</div>
+                <div class="label">Airports</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+            <div class="stat-card">
+                <span class="icon">👤</span>
+                <div class="number">{{ total_passengers }}</div>
+                <div class="label">Passengers</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+            <div class="stat-card">
+                <span class="icon">🌍</span>
+                <div class="number">{{ total_airlines + total_airports }}</div>
+                <div class="label">Destinations</div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">✈ Airlines & Fleet</h2>
+    <div class="row mb-5">
+        {% for airline in airlines %}
+        <div class="col-md-4 mb-4">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title">{{ airline.name }}</h5>
+                        {% set ns = namespace(count=0) %}
+                        {% for s in airline_stats %}
+                            {% if s.name == airline.name %}
+                                {% set ns.count = s.count %}
+                            {% endif %}
+                        {% endfor %}
+                        <span class="badge-airline">{{ ns.count }} aircraft</span>
+                    </div>
+                    {% if airline.founding_year %}
+                    <p class="mb-1"><strong>Founded:</strong> {{ airline.founding_year }}</p>
+                    {% endif %}
+                    <p class="mb-1"><strong>Headquarters:</strong> {{ airline.headquarters }}</p>
+                    <p class="mb-0"><strong>Care:</strong> {{ airline.customer_care_number }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="section-title">🛩 Aircraft Fleet</h2>
+    <div class="card-custom mb-5 p-0">
+        <div class="table-responsive">
+            <table class="table table-airline">
+                <thead>
+                    <tr>
+                        <th>Aircraft</th>
+                        <th>Model</th>
+                        <th>Airline</th>
+                        <th>Capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plane in airplanes %}
+                    <tr>
+                        <td>
+                            <span class="fleet-img-placeholder" style="background:var(--primary);color:#fff;">✈</span>
+                            {{ plane.name }}
+                        </td>
+                        <td>{{ plane.model }}</td>
+                        <td><span class="badge-airline">{{ plane.airline }}</span></td>
+                        <td><strong>{{ plane.capacity }}</strong> seats</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h2 class="section-title">🎫 Ticket Schedule</h2>
+    <div class="card-custom mb-5 p-0">
+        <div class="table-responsive">
+            <table class="table table-airline">
+                <thead>
+                    <tr>
+                        <th>Ticket</th>
+                        <th>Flight</th>
+                        <th>Route</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in tickets %}
+                    <tr>
+                        <td>{{ ticket.name[:20] }}{% if ticket.name|length > 20 %}...{% endif %}</td>
+                        <td><strong>{{ ticket.flight }}</strong></td>
+                        <td>{{ ticket.source_airport_code or '??' }} → {{ ticket.destination_airport_code or '??' }}</td>
+                        <td>{{ frappe.format_date(ticket.departure_date) or '—' }}</td>
+                        <td>
+                            {% if ticket.status == "Booked" %}
+                                <span class="status-booked">● Booked</span>
+                            {% elif ticket.status == "Checked-In" %}
+                                <span class="status-checkedin">● Checked-In</span>
+                            {% elif ticket.status == "Boarded" %}
+                                <span class="status-boarded">● Boarded</span>
+                            {% else %}
+                                <span class="text-muted">—</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <h2 class="section-title">📍 Airports</h2>
+            <div class="card-custom p-0">
+                <div class="table-responsive">
+                    <table class="table table-airline">
+                        <thead>
+                            <tr>
+                                <th>Airport</th>
+                                <th>Code</th>
+                                <th>City</th>
+                                <th>Country</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for airport in airports %}
+                            <tr>
+                                <td><strong>{{ airport.name }}</strong></td>
+                                <td><span class="badge-airline">{{ airport.code }}</span></td>
+                                <td>{{ airport.city }}</td>
+                                <td>{{ airport.country }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 class="section-title">👤 Passengers</h2>
+            <div class="card-custom p-0">
+                <div class="table-responsive">
+                    <table class="table table-airline">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Date of Birth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for passenger in passengers %}
+                            <tr>
+                                <td>{{ passenger.name }}</td>
+                                <td><strong>{{ passenger.first_name }} {{ passenger.last_name or '' }}</strong></td>
+                                <td>{{ frappe.format_date(passenger.date_of_birth) or '—' }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-section">
+    <div class="container">
+        <p class="mb-0">✈ Airline Portal &mdash; Powered by Frappe Framework</p>
+    </div>
+</div>
+{% endblock %}
